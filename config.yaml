@@ -1,0 +1,13 @@
+gateway:
+  port: 3030
+
+rabbitmq:
+  url: 'amqp://guest:guest@localhost:5672'
+
+redis:
+  host: 'localhost'
+  port: 6379
+
+auth:
+  AT_SECRET: 'at-secret'
+  RT_SECRET: 'rt-secret'
