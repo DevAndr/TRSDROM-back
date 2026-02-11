@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { MsStoreModule } from './ms-store.module';
 import { ConfigService } from '@nestjs/config';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { RABBIT_MQ_QUEUE_STORE } from '@app/contracts';
 
 async function bootstrap() {
   const appContext = await NestFactory.createApplicationContext(MsStoreModule);
@@ -17,7 +18,7 @@ async function bootstrap() {
       transport: Transport.RMQ,
       options: {
         urls: [url],
-        queue: 'store-queue',
+        queue: RABBIT_MQ_QUEUE_STORE,
         queueOptions: {
           durable: false,
         },

@@ -11,7 +11,7 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "GGzS6AJHsArdm_tSn_H0"
-      POSTGRES_DB: "drill-void-db"
+      POSTGRES_DB: "trusodrom-db"
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=en_US.UTF-8 --lc-ctype=en_US.UTF-8"
       PGDATA: "/var/lib/postgresql/data/pgdata"
 
@@ -23,7 +23,7 @@ services:
       start_period: 10s
     restart: unless-stopped
     networks:
-      - drill-void-network
+      - trusodrom-network
 
   redis:
     image: redis:alpine3.21
@@ -34,7 +34,7 @@ services:
     volumes:
       - './data/redis:/data'
     networks:
-      - drill-void-network
+      - trusodrom-network
 
   rabbitMQ:
     image: rabbitmq:management-alpine
@@ -52,11 +52,11 @@ services:
     volumes:
       - './data/rabbitmq:/var/lib/rabbitmq'
     networks:
-      - drill-void-network
+      - trusodrom-network
     depends_on:
       - postgres
       - redis
 
 networks:
-  drill-void-network:
+  trusodrom-network:
     driver: bridge

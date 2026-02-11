@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { MsUserModule } from './ms-user.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
+import { RABBIT_MQ_QUEUE_USER } from '@app/contracts';
 
 async function bootstrap() {
   const appContext = await NestFactory.createApplicationContext(MsUserModule);
@@ -17,7 +18,7 @@ async function bootstrap() {
       transport: Transport.RMQ,
       options: {
         urls: [url],
-        queue: 'user-queue',
+        queue: RABBIT_MQ_QUEUE_USER,
         queueOptions: {
           durable: false,
         },

@@ -23,7 +23,10 @@
     "dev-ms-store": "nest start --watch ms-store",
     "dev-ms-product": "nest start --watch ms-product",
     "dev-ms-notifications": "nest start --watch ms-notifications",
-    "dev:all": "concurrently -c \"cyan.bold,red.bold,green.bold,yellow.bold,magenta.bold,blue.bold,purple.bold,magenta.bold,yellow.bold,green.bold,red.bold,cyan.bold\" \"yarn:dev-*\""
+    "dev:all": "concurrently -c \"cyan.bold,red.bold,green.bold,yellow.bold,magenta.bold,blue.bold,purple.bold,magenta.bold,yellow.bold,green.bold,red.bold,cyan.bold\" \"yarn:dev-*\"",
+    "prisma:gen": "npx libs/prisma/prisma generate --schema=./libs/prisma/prisma/schema.prisma --watch",
+    "prisma:migration": "npx libs/prisma/prisma migrate dev --schema ./libs/prisma/prisma/schema.prisma",
+    "prisma:seed": "npx prisma db seed"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.13",
@@ -31,6 +34,8 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/microservices": "^11.1.13",
     "@nestjs/platform-express": "^11.0.1",
+    "@telegram-apps/init-data-node": "^2.0.10",
+    "@prisma/client": "^6.5.0",
     "amqp-connection-manager": "^5.0.0",
     "amqplib": "^0.10.9",
     "argon2": "^0.44.0",
@@ -64,6 +69,7 @@
     "globals": "^16.0.0",
     "jest": "^29.7.0",
     "prettier": "^3.4.2",
+    "prisma": "6.5.0",
     "source-map-support": "^0.5.21",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
@@ -94,7 +100,9 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
-      "^@app/core(|/.*)$": "<rootDir>/libs/core/src/$1"
+      "^@app/contracts(|/.*)$": "<rootDir>/libs/contracts/src/$1",
+      "^@app/core(|/.*)$": "<rootDir>/libs/core/src/$1",
+      "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1"
     }
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"

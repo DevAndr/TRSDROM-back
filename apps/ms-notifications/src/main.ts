@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { MsNotificationsModule } from './ms-notifications.module';
 import { ConfigService } from '@nestjs/config';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { RABBIT_MQ_QUEUE_NOTIFICATIONS } from '@app/contracts';
 
 async function bootstrap() {
   const appContext = await NestFactory.createApplicationContext(
@@ -19,7 +20,7 @@ async function bootstrap() {
       transport: Transport.RMQ,
       options: {
         urls: [url],
-        queue: 'notifications-queue',
+        queue: RABBIT_MQ_QUEUE_NOTIFICATIONS,
         queueOptions: {
           durable: false,
         },
