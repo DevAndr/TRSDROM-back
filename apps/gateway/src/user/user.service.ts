@@ -12,4 +12,10 @@ export class UserService {
       this.authClient.send(MS_USER_PATTERNS.AUTH_WITH_TELEGRAM, initData),
     );
   }
+
+  getUserById(uid: string) {
+    return firstValueFrom(
+      this.authClient.send(MS_USER_PATTERNS.GET_USER_BY_ID, uid),
+    );
+  }
 }

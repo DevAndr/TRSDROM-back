@@ -19,6 +19,7 @@ model User {
   username   String   @unique
   urlPhoto   String?
   isSeller   Boolean  @default(false)
+  stores     Store[]
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
@@ -41,7 +42,10 @@ model Store {
   id          String    @id @default(uuid())
   name        String
   description String
+  logo        String?
   products    Product[]
+  User        User?     @relation(fields: [uid], references: [uid])
+  uid         String?
 }
 
 enum OrderStatus {

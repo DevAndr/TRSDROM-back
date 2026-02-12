@@ -48,6 +48,8 @@ export class MsUserService {
 
         // this.gameDataClient.emit(MS_GAME_DATA_PATTERNS.INITIAL, user.uid);
       }
+
+      return { ...user, isNewUser };
     } catch (error) {
       console.log(error);
       throw new UnauthorizedException();
@@ -67,5 +69,13 @@ export class MsUserService {
 
     if (!user?.username)
       throw new HttpException('Missing username', HttpStatus.NOT_FOUND);
+  }
+
+  getUserById(uid: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        uid,
+      },
+    });
   }
 }

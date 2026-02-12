@@ -10,4 +10,10 @@ export class UserController {
   authWithTelegram(@Body() data: PayloadLoginTelegramDto) {
     return this.userService.authWithTelegram(data.initData);
   }
+
+  @Post('get-by-id')
+  getUserById(@Body('uid') uid: string) {
+    console.log(uid);
+    return this.userService.getUserById(uid);
+  }
 }

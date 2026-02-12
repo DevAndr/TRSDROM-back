@@ -17,4 +17,10 @@ export class MsUserController {
     console.log(`Pattern: ${context.getPattern()}`, data);
     return this.userService.authWitchTelegram(data);
   }
+
+  @MessagePattern(MS_USER_PATTERNS.GET_USER_BY_ID)
+  getUserById(@Payload() uid: string, @Ctx() context: RmqContext) {
+    console.log(`Pattern: ${context.getPattern()}`, uid);
+    return this.userService.getUserById(uid);
+  }
 }
